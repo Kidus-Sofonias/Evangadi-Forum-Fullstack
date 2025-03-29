@@ -9,7 +9,7 @@ app.use(express.json()); // Parse incoming request body in JSON format
 app.use(cors());
 
 //
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 const createTables = async () => {
   // SQL query to create the Users table
