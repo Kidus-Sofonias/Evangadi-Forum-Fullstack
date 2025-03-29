@@ -1,20 +1,23 @@
-const authMiddleware = (req, res, next) => {
-  // Example authentication logic
-  const token = req.headers.authorization;
+const { StatusCodes } = require('http-status-codes')
+const jwt = require('jsonwebtoken')
 
-  if (!token) {
-    return res.status(401).json({ message: "Unauthorized" });
-  }
+async function authMiddleware (req, res, next){
+const authHeader= req.headers.authorization;
+if(!authHeader || !authHeader.startsWith('Bearer ')){
+return res.status(StatusCodes.UNAUTHORIZED).json({message:"Authentication invalid"})
+}
+const token = authHeader.split(' ')[1] // get token from header
 
-  try {
-    // Verify token logic (e.g., using JWT)
-    // const decoded = jwt.verify(token, 'your-secret-key');
-    // req.user = decoded;
+try {
+    const {user_name, user_id} = jwt.verify(token, process.env.JWT_SECRET)
+    
+    // create request object
+    req.user = { user_name, user_id }
+   next()
+} catch (error) {
+    return res.status(StatusCodes.UNAUTHORIZED).json({message:"Authentication denied"}) 
+}
+} 
+module.exports = authMiddleware 
 
-    next(); // Proceed to the next middleware or route handler
-  } catch (error) {
-    res.status(401).json({ message: "Invalid token" });
-  }
-};
 
-module.exports = authMiddleware;
