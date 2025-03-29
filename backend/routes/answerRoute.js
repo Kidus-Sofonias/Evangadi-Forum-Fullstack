@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const authMiddleware = require("../middleware/authMiddleware");
+const authMiddleware = require("../middleWare/authMiddleware");
 const {createAnswer, GetAnswersByQuestionId}  = require("../controller/answer")
 
 router.post("/answers/create", authMiddleware, createAnswer); 
