@@ -48,10 +48,10 @@ function HomePage() {
     navigate(`/edit-question/${questionId}`);
   }
 
-  const fetchQuestionsByTag = async (tag) => {
+  const fetchQuestionsBySearch = async (searchTerm) => {
     try {
       const response = await axios.get(
-        `/questions/search?tag=${encodeURIComponent(tag)}`,
+        `/questions/search?query=${encodeURIComponent(searchTerm)}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -60,12 +60,12 @@ function HomePage() {
       );
       setQuestions(response.data.result); // Update questions with filtered results
     } catch (err) {
-      console.error("Error fetching questions by tag:", err);
+      console.error("Error fetching questions by search:", err);
     }
   };
 
   function handleSearch() {
-    fetchQuestionsByTag(searchTag); // Trigger search by tag
+    fetchQuestionsBySearch(searchTag); // Trigger search by tag or title
   }
 
   useEffect(() => {

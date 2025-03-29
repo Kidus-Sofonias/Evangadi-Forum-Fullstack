@@ -38,7 +38,7 @@ function Header() {
 
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto fw-bold fs-5">
-            <Nav.Link as={Link} to="/" className="text-dark">
+            <Nav.Link as={Link} to="/home" className="text-dark">
               Home
             </Nav.Link>
             <Nav.Link as={Link} to="/how-it-works" className="text-dark">

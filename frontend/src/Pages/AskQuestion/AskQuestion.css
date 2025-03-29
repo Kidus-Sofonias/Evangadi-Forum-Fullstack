@@ -3,11 +3,12 @@
 .ask-question-container {
   font-family: 'Comic Neue', cursive;
   color: #2c2c2c;
+  margin-top: 100px;
 }
 
 .instruction-title {
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   text-decoration: underline;
   margin-bottom: 1rem;
 }
@@ -20,7 +21,7 @@
 
 .instruction-list li {
   margin-bottom: 10px;
-  font-size: 1rem;
+  font-size: 1.2rem;
   display: flex;
   align-items: flex-start;
 }
