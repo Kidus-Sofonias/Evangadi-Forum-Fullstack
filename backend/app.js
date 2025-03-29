@@ -9,7 +9,7 @@ app.use(express.json()); // Parse incoming request body in JSON format
 app.use(cors());
 
 //
-const PORT = process.env.PORT;
+const port = process.env.PORT || 4000;
 
 const createTables = async () => {
   // SQL query to create the Users table
@@ -62,11 +62,11 @@ const start = async () => {
   try {
     const result = await dbConnection.execute("select 'test' ");
     await createTables(); // Ensure tables are created before starting the server
-    app.listen(PORT, () => {
-      console.log(`Server is running on http://localhost:${PORT}`);
+    app.listen(port, () => {
+      console.log(`Server is running on http://localhost:${port}`);
     });
     console.log("Database connected successfully");
-    console.log(`Listening to PORT: ${PORT}`);
+    console.log(`Listening to PORT: ${port}`);
   } catch (error) {
     console.log(error.message);
   }
