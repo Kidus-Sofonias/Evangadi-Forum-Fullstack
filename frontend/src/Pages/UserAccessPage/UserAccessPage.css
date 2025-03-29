@@ -1,0 +1,78 @@
+
+.home {
+    background-image: url('../../Images/background.svg');
+    background-size: cover;
+    background-position: center;
+
+    z-index: 0;
+    margin-top: 81px;
+    background-repeat: no repeat;
+
+}
+
+.con {
+    padding-top: 10px;
+}
+
+.info {
+    max-width: 500px;
+    margin-left: 5px;
+    padding-top: 50px;
+}
+
+.about {
+    color: #FE8402;
+    text-decoration: none;
+}
+
+.pl {
+    margin-bottom: 45px;
+    margin-top: 25px;
+}
+
+.works {
+    border-radius: 5px;
+    padding: 3px 3px;
+    width: 180px;
+    height: 36px;
+    border: 1px solid;
+    color: white;
+    margin-top: 10px;
+    background-color: #FE8402 !important
+}
+
+.con {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+
+.show-sign-in {
+    transform: translateX(0%);
+}
+
+.show-sign-up {
+    transform: translateX(-100%);
+}
+
+
+/* Header Styling */
+.network {
+    font-size: 2.5em; /* Adjust font size as needed */
+    color: white; /* Text color for better contrast */
+    /* text-align: center;  */
+    background: linear-gradient(310deg, #292828, #ea4d0e); /* Gradient background */
+    -webkit-background-clip: text; /* Clip background to text */
+    -webkit-text-fill-color: transparent; 
+    /* Make text fill color transparent for gradient effect */
+    
+   
+   
+}
+
+.pb-3 {
+    padding-bottom: 0.1rem; }
+
+.hi {
+    font-weight: bold; /* Make text bold for emphasis */
+}

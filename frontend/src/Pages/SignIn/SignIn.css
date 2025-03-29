@@ -1,0 +1,81 @@
+/* Form container */
+form {
+  position: relative; /* Position form relative to position the icon absolutely */
+}
+
+/* Input styling */
+form input {
+  width: 100%; /* Full width of the form */
+  padding: 10px; /* Space inside the input field */
+  border: 1px solid #ddd; /* Light border */
+  border-radius: 5px; /* Slightly rounded corners */
+  background: #fff; /* Solid white background */
+  color: #000; /* Black text for contrast */
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
+  font-size: 0.9em; /* Adjust font size if needed */
+  position: relative; /* Position relative to contain the icon */
+  margin-bottom: 15px; /* Increased space between inputs */
+}
+
+/* Password visibility toggle icon */
+
+/* Remove extra margin-right from hide class */
+.hide {
+  margin-right: 0;
+}
+
+/* Container for First Name and Last Name inputs */
+.input-group {
+  display: flex;
+  gap: 5px; /* Minimal space between the two inputs */
+  margin-bottom: 10px; /* Space below the input group */
+}
+
+/* Individual input styling */
+.input-group .first-name,
+.input-group .last-name {
+  flex: 1; /* Flex to take up equal space */
+  margin: 0; /* Remove default margin */
+}
+
+/* Button styling */
+button.login__signInButton {
+  width: 100%; /* Full width of the form */
+  padding: 8px; /* Reduced padding */
+  background-color: #516cf0; /* Primary color */
+  color: #fff; /* White text */
+  border: none;
+  border-radius: 5px; /* Slightly rounded corners */
+  font-size: 1em; /* Slightly smaller font size */
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button.login__signInButton:hover {
+  background-color: #fe8402; /* Darker shade on hover */
+}
+
+/* Link styling */
+.create {
+  color: #516cf0; /* Primary color */
+  text-decoration: none;
+}
+
+.create:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+
+.signinfas {
+  position: relative; /* Establish a containing block for the absolutely positioned icon */
+  margin-bottom: 10px; /* Space below the container */
+}
+
+.signinfas i.fas{
+  margin-top: 8px;
+  margin-left: -28px;
+}
+
+.password-container{
+  display: flex;
+}

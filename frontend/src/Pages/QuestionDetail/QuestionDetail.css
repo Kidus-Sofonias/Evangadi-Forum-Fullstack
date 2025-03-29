@@ -1,0 +1,82 @@
+.whole-container{
+  margin-top: 100px;
+}
+
+.card {
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: none;
+}
+
+.card-title {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.card-subtitle {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+.card-text {
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+.info_question {
+  background-color: #f9f9f9;
+}
+
+.user {
+  color: #516cf0;
+}
+
+.username {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+.answer-text {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.answer h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+textarea.form-control {
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  padding: 0.75rem;
+}
+
+textarea.form-control:focus {
+  border-color: #516cf0;
+  box-shadow: 0 0 0 0.2rem rgba(81, 108, 240, 0.25);
+}
+
+.btn-success {
+  background-color: #516cf0;
+  border-color: #516cf0;
+}
+
+.btn-success:hover {
+  background-color: #4058c3;
+  border-color: #4058c3;
+}
+
+.invalid-feedback {
+  font-size: 0.875rem;
+  color: red;
+  text-align: left;
+  width: 75%;
+  margin: 0 auto;
+}
+
+.post-button{
+  width: 320px;
+  padding: 0px 10px !important;
+}

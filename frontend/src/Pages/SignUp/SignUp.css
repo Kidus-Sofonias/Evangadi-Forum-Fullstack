@@ -1,0 +1,122 @@
+/* Styling for the SignUp container */
+.login__container {
+    background: rgba(255, 255, 255, 0.9); /* Slightly transparent white background */
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    max-width: 600px; /* Adjust as needed */
+    margin: 20px auto; /* Center the container */
+    color: #000; /* Black text color */
+  }
+  
+  /* Title styling */
+  .login__container h4 {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #000; /* Black text color */
+  }
+  
+  /* Paragraph styling */
+  .login__container p {
+    text-align: center;
+    color: #333; /* Dark gray for text */
+  }
+  
+  /* Form styling */
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Container for First Name and Last Name inputs */
+  .input-group {
+    display: flex;
+    gap: 5px; /* Minimized space between the two inputs */
+    margin-bottom: 10px; /* Space below the input group */
+  }
+  
+  /* Individual input styling */
+  form input {
+    width: 100%;
+    margin: 0; /* Remove default margin */
+    padding: 10px;
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 10px; /* Rounded corners */
+    background: #fff; /* Solid white background */
+    color: #000; /* Black text for contrast */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+  }
+  
+  /* Specific styling for First Name and Last Name inputs */
+  .input-group .first-name,
+  .input-group .last-name {
+    flex: 1; /* Flex to take up equal space */
+    margin: 0; /* Remove default margin */
+  }
+  
+  /* Invalid input styling */
+  input.invalid {
+    border: 1px solid #e01e5a !important; /* Red border for invalid inputs */
+    background: #fce9ef !important; /* Light red background */
+  }
+  
+
+  
+  /* Button styling */
+  button.login__signInButton {
+    width: 100%;
+    padding: 10px;
+    background-color: #516CF0; /* Primary color */
+    color: #fff; /* White text */
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button.login__signInButton:hover {
+    background-color: #3A4DB7; /* Darker shade on hover */
+  }
+  
+  /* Link styling */
+  .create {
+    color: #516CF0; /* Primary color */
+    text-decoration: none;
+  }
+  
+  .create:hover {
+    text-decoration: underline; /* Underline on hover */
+  }
+  
+  /* Hide class for password visibility icon */
+  .hide {
+    margin-right: -25px; /* Adjust positioning if needed */
+  }
+ /* Container for the password toggle icon */
+.signfas {
+    position: relative; /* Establish a containing block for the absolutely positioned icon */
+    margin-bottom: 10px; /* Space below the container */
+  }
+  
+  /* Icon within the .signfas container */
+  .signfas i.fas {
+    position: absolute;
+    right: 10px; /* Place icon 10px from the right edge */
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%); /* Adjust vertical alignment */
+    font-size: 1.2em; /* Adjust icon size */
+    cursor: pointer; /* Pointer cursor on hover */
+    color: #000; /* Black color for the icon */
+    margin-top: -35px;
+  }
+  
+  /* Adjust input field within .signfas */
+  .signfas input {
+    width: 100%; /* Full width of the container */
+    padding-right: 40px; /* Extra padding to ensure text doesn't overlap with the icon */
+  }
+  
+  

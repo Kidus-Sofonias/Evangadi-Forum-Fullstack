@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap');
+
+.ask-question-container {
+  font-family: 'Comic Neue', cursive;
+  color: #2c2c2c;
+}
+
+.instruction-title {
+  font-weight: 700;
+  font-size: 1.5rem;
+  text-decoration: underline;
+  margin-bottom: 1rem;
+}
+
+.instruction-list {
+  list-style: none;
+  padding: 0;
+  max-width: 500px;
+}
+
+.instruction-list li {
+  margin-bottom: 10px;
+  font-size: 1rem;
+  display: flex;
+  align-items: flex-start;
+}
+
+.bullet {
+  color: #5a5aee;
+  font-size: 1.2rem;
+  margin-right: 8px;
+}
+
+.form-title {
+  font-weight: bold;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.input-box {
+  width: 75%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  font-family: 'Comic Neue', cursive;
+  font-size: 1rem;
+  resize: none;
+  transition: border-color 0.3s;
+}
+
+.input-box::placeholder {
+  color: #444;
+  opacity: 1;  
+}
+
+.input-box:focus {
+  border-color: #5a5aee;
+  outline: none;
+}
+
+.invalid {
+  border-color: red;
+}
+
+.post-button {
+  background-color: #297be6;
+  color: white;
+  padding: 10px 60px;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-family: 'Comic Neue', cursive;
+  transition: background-color 0.3s;
+}
+
+.post-button:hover {
+  background-color: #005ec2;
+}
+
+.success-message {
+  color: lightgreen;
+  font-size: 1rem;
+  margin-bottom: 15px;
+  display: block;
+}
+
+.question-form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

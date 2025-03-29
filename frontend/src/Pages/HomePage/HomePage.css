@@ -1,0 +1,126 @@
+/* General Container Styling */
+.container {
+  padding: 20px;
+  margin: 0 auto;
+  max-width: 1200px;
+  font-family: Arial, sans-serif;
+}
+
+/* Centered Main Content Area */
+.homp {
+  margin-top: 84px;
+  text-align: center;
+  padding: 0 20px;
+}
+
+/* Header Styling */
+.hed {
+  padding-top: 45px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Ask Question Button */
+.qb {
+  background-color: #516cf0;
+  width: 200px;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  line-height: 40px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+.qb:hover {
+  background-color: #fe8402;
+  transform: scale(1.05);
+}
+
+/* Welcome Message */
+.wel {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #516cf0;
+}
+
+/* Section Title */
+.ns {
+  margin: 20px 0;
+  font-size: 1.8em;
+  color: #333;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Loading Spinner */
+.loading {
+  font-size: 1.5em;
+  color: #999;
+  text-align: center;
+  margin: 20px 0;
+}
+
+/* Question Item Styling */
+.question-item {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.question-item:hover {
+  background-color: #f1f1f1;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+/* Adjusted Container for Questions */
+.load {
+  padding: 0 20px;
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
+/* Pagination Styling */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+  gap: 10px;
+}
+
+.pagination button {
+  background-color: #516cf0;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.pagination button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.pagination button:hover:not(:disabled) {
+  background-color: #fe8402;
+  transform: scale(1.05);
+}
+
+.pagination span {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #333;
+}
