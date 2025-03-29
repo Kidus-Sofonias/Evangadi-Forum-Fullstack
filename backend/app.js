@@ -62,7 +62,9 @@ const start = async () => {
   try {
     const result = await dbConnection.execute("select 'test' ");
     await createTables(); // Ensure tables are created before starting the server
-    app.listen(PORT);
+    app.listen(PORT, () => {
+      console.log(`Server is running on http://localhost:${PORT}`);
+    });
     console.log("Database connected successfully");
     console.log(`Listening to PORT: ${PORT}`);
   } catch (error) {
