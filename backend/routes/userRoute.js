@@ -3,7 +3,7 @@ const router = express.Router(); // Initialize express router
 
 // importing user controllers
 const { register, login, checkUser } = require("../controller/userController");
-const authMiddleware = require("../middleware/authMiddleware");
+const authMiddleware = require("../middleWare/authMiddleware");
 
 // register user route
 router.post("/register", register);
