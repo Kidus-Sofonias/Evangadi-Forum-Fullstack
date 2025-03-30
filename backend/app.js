@@ -67,6 +67,7 @@ const start = async () => {
     });
     console.log("Database connected successfully");
     console.log(`Listening to PORT: ${port}`);
+    console.log("PORT ENV:", process.env.PORT);
   } catch (error) {
     console.log(error.message);
   }
