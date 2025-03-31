@@ -40,7 +40,7 @@ function SignIn({ toggleForm }) {
 
       console.log(response);
 
-      navigate("/home"); 
+      navigate("/home", { replace: true }); // Use replace: true to prevent going back to SignIn
     } catch (error) {
       if (error.response && error.response.status === 400) {
         // Handle the "invalid credential" error here
