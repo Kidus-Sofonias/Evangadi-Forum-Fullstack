@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import "./SignUp.css"; 
+import "./SignUp.css";
 import axios from "../../Components/axios";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
- 
 
 function SignUp({ toggleForm }) {
   const [errorResponse, setError] = useState("");
@@ -22,7 +21,7 @@ function SignUp({ toggleForm }) {
     reset();
 
     try {
-      await axios.post("/users/register", {
+      await axios.post("/api/users/register", {
         user_name: data.user_name,
         first_name: data.first_name,
         last_name: data.last_name,
@@ -130,20 +129,20 @@ function SignUp({ toggleForm }) {
           style={{ padding: "4px" }}
         />
         <div className="signfas">
-        <i onClick={togglePasswordVisibility}>
-          {passwordVisible ? (
-            <i className="fas fa-eye-slash" />
-          ) : (
-            <i className="fas fa-eye" />
+          <i onClick={togglePasswordVisibility}>
+            {passwordVisible ? (
+              <i className="fas fa-eye-slash" />
+            ) : (
+              <i className="fas fa-eye" />
+            )}
+          </i>
+
+          {errors.password && (
+            <div>
+              <small className="text-danger">{errors.password.message}</small>
+            </div>
           )}
-        </i>
-        
-        {errors.password && (
-          <div>
-            <small className="text-danger">{errors.password.message}</small>
-          </div>
-        )}
-</div>
+        </div>
         <p>
           I agree to the{" "}
           <Link

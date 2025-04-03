@@ -7,7 +7,6 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
 function SignIn({ toggleForm }) {
-  
   const {
     register,
     trigger,
@@ -26,9 +25,9 @@ function SignIn({ toggleForm }) {
 
   async function logIn(data) {
     try {
-      const response = await axios.post("/users/login", {
+      const response = await axios.post("/api/users/login", {
         password: data.password,
-        email: data.email, 
+        email: data.email,
       });
 
       localStorage.setItem("token", response.data.token);
@@ -62,7 +61,6 @@ function SignIn({ toggleForm }) {
         <Link className="create" onClick={toggleForm}>
           Create a new account
         </Link>
-
       </p>
       <form onSubmit={handleSubmit(logIn)}>
         <input
@@ -84,31 +82,31 @@ function SignIn({ toggleForm }) {
 
         <div className="password-container">
           <input
-          type={passwordVisible ? "password" : "text"}
-          className={` hide ${errors.password && "invalid"}`}
-          placeholder="  Password"
-          {...register("password", {
-            required: "Password is required",
+            type={passwordVisible ? "password" : "text"}
+            className={` hide ${errors.password && "invalid"}`}
+            placeholder="  Password"
+            {...register("password", {
+              required: "Password is required",
 
-            minLength: {
-              value: 8,
-              message: "Minimum password length is 8",
-            },
-          })}
-          onKeyUp={() => {
-            trigger("password");
-          }}
-          style={{ padding: "5px" }}
-        />
-        <div className="signinfas">
-        <i onClick={togglePasswordVisibility}>
-          {passwordVisible ? (
-            <i className="fas fa-eye-slash" />
-          ) : (
-            <i className="fas fa-eye" />
-          )}
-        </i>
-        </div>
+              minLength: {
+                value: 8,
+                message: "Minimum password length is 8",
+              },
+            })}
+            onKeyUp={() => {
+              trigger("password");
+            }}
+            style={{ padding: "5px" }}
+          />
+          <div className="signinfas">
+            <i onClick={togglePasswordVisibility}>
+              {passwordVisible ? (
+                <i className="fas fa-eye-slash" />
+              ) : (
+                <i className="fas fa-eye" />
+              )}
+            </i>
+          </div>
         </div>
         <button className="login__signInButton " type="submit">
           Submit

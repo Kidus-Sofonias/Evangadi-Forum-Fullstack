@@ -11,7 +11,7 @@ import axios from "./Components/axios";
 import { useContext, useEffect } from "react";
 import { QuestionContext } from "./Context/QuestionContext";
 import HowItWorks from "./Pages/HowItWorks/HowItWorks";
-import  PrivateRoute  from "./Context/PrivateRoute.jsx";
+import PrivateRoute from "./Context/PrivateRoute.jsx";
 import SignIn from "./Pages/SignIn/SignIn.jsx";
 import UserAccessPage from "./Pages/UserAccessPage/UserAccessPage.jsx";
 function App() {
@@ -19,7 +19,7 @@ function App() {
   const [user, setUser] = useContext(userProvider);
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
-  const location = useLocation();  
+  const location = useLocation();
 
   function logOut() {
     setUser({});
@@ -29,7 +29,7 @@ function App() {
 
   async function checkUser() {
     try {
-      const { data } = await axios.get("/users/check", {
+      const { data } = await axios.get("/api/api/users/check", {
         headers: {
           Authorization: "Bearer " + token,
         },
@@ -51,18 +51,19 @@ function App() {
   }
 
   useEffect(() => {
-    if (token) { // If the token exists
+    if (token) {
+      // If the token exists
       checkUser(); // Call the checkUser function, which will set the user state
     } else {
       navigate("/"); // Redirect to the login page
     }
   }, []); // Run only once when the component mounts
-  const isLandingPage = location.pathname === '/';
+  const isLandingPage = location.pathname === "/";
   return (
     <>
       {!isLandingPage && <Header logOut={logOut} />}
       <Routes>
-      {/* <Route path="/" element={<ExternalPage />} /> */}
+        {/* <Route path="/" element={<ExternalPage />} /> */}
         <Route path="/" element={<Landing />} />
         <Route
           path="/home"
@@ -78,7 +79,7 @@ function App() {
         <Route path="/UserAccessPage" element={<UserAccessPage />} />
         <Route path="/how-it-works" element={<HowItWorks />} />
       </Routes>
-      <Footer /> 
+      <Footer />
     </>
   );
 }
