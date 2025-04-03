@@ -47,7 +47,7 @@ function HomePage() {
   function handleEdit(questionId) {
     navigate(`/edit-question/${questionId}`);
   }
-
+  
   const fetchQuestionsByTag = async (tag) => {
     try {
       const response = await axios.get(
@@ -65,8 +65,13 @@ function HomePage() {
   };
 
   function handleSearch() {
-    fetchQuestionsByTag(searchTag); // Trigger search by tag
+    if (!searchTag.trim()) {
+      console.warn("Search tag is empty — skipping request.");
+      return;
+    }
+    fetchQuestionsByTag(searchTag);
   }
+
 
   useEffect(() => {
     async function fetchAllQuestions() {
@@ -79,7 +84,6 @@ function HomePage() {
             },
           }
         );
-        console.log(response.data.result);
         setQuestions(response.data.result);
         setTotalQuestions(response.data.total); // Update total questions
         setLoading(false);
@@ -112,7 +116,11 @@ function HomePage() {
             onChange={(e) => setSearchTag(e.target.value)}
             className="form-control"
           />
-          <button onClick={handleSearch} className="btn btn-primary mt-2">
+          <button
+            onClick={handleSearch}
+            className="btn btn-primary mt-2"
+            disabled={!searchTag.trim()} // disable when input is empty
+          >
             Search
           </button>
         </div>
@@ -126,26 +134,13 @@ function HomePage() {
             <div className="question-item" key={question.question_id}>
               <Question
                 title={question.title}
-                user_name={question.user_name}
+                user_name={
+                  `${question.first_name} ${question.last_name}`.trim() ||
+                  question.user_name
+                }
                 question_id={question.question_id}
-                tag={question.tag} // Pass tag to the Question component
+                tag={question.tag}
               />
-              {user.user_name === question.user_name && (
-                <div className="question-actions">
-                  <button
-                    className="edit-btn"
-                    onClick={() => handleEdit(question.question_id)}
-                  >
-                    Edit
-                  </button>
-                  <button
-                    className="delete-btn"
-                    onClick={() => handleDelete(question.question_id)}
-                  >
-                    Delete
-                  </button>
-                </div>
-              )}
             </div>
           ))
         )}

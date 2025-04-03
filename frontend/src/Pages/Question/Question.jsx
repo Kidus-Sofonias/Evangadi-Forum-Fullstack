@@ -12,7 +12,7 @@ function Question({ title, user_name, question_id }) {
 
 	return (
 		<div className="border-top row top_question " onClick={handleClick}>
-			<div className="col-md-1 d-flex flex-column align-items-md-center my-md-auto">
+			<div className="col-md-2 d-flex flex-column align-items-md-center my-md-auto">
 				<i className="fas fa-user-circle fa-3x user" style={{ color: "#516cf0 " }}/>
 				<p className="mb-0">{user_name}</p>
 			</div>

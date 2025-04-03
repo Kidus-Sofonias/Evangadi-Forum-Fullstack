@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const dbConnection = require("./db/config");
+const dotenv = require("dotenv");
 
 const app = express(); // Initialize express app instance
 
@@ -52,6 +53,7 @@ const createTables = async () => {
     await dbConnection.execute(question_table);
     await dbConnection.execute(answer_table);
     console.log("Tables created successfully");
+    
   } catch (err) {
     console.log("Error creating tables:", err.message);
     throw err;

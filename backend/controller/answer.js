@@ -43,72 +43,7 @@ async function GetAnswersByQuestionId(req,res){
 }
 
 
-
-
-// async function GetAnswersByQuestionId(req, res) {
-//     try {
-//       console.log("Request params:", req.params); // Debug log for params
-//       const question_id = req.params.question_id; // Convert to integer
-//       console.log("Requested question_id:", question_id); // Debug log for question_id
-//       const [question] = await dbconnection.query(
-//         "SELECT * FROM questions WHERE question_id = ?",
-//         [question_id]
-//       );
-//       if (question.length === 0) {
-//         return res.status(404).json({ msg: "Question not found" });
-//       }
-//       const [answers] = await dbconnection.query(
-//         // "SELECT * FROM answers WHERE question_id = ?",
-//         `SELECT a.answer_id, a.answer, a.user_id, u.user_name
-//          FROM answers a
-//          JOIN users u ON a.user_id = u.user_id
-//          WHERE a.question_id = ?`,
-//         [question_id]
-//       );
-//       res.status(200).json({ question: question[0], answers });
-//     } catch (err) {
-//       console.error("Error in gettingAnswer:", err);
-//       res.status(500).json({ msg: "Server error" });
-//     }
-//   }
-
-
-
 module.exports = {
     createAnswer,
     GetAnswersByQuestionId
 };
-
-
-
-
-
-
- 
-
-// async function GetAnswersByQuestionId(req, res) {
-//     try {
-//       console.log("Request params:", req.params); // Debug log for params
-//       const question_id = req.params.question_id; // Convert to integer
-//       console.log("Requested question_id:", question_id); // Debug log for question_id
-//       const [question] = await dbconnection.query(
-//         "SELECT * FROM questions WHERE question_id = ?",
-//         [question_id]
-//       );
-//       if (question.length === 0) {
-//         return res.status(404).json({ msg: "Question not found" });
-//       }
-//       const [answers] = await dbconnection.query(
-//         // "SELECT * FROM answers WHERE question_id = ?",
-//         `SELECT a.answer_id, a.answer, a.user_id, u.user_name
-//          FROM answers a
-//          JOIN users u ON a.user_id = u.user_id
-//          WHERE a.question_id = ?`,
-//         [question_id]
-//       );
-//       res.status(200).json({ question: question[0], answers });
-//     } catch (err) {
-//       console.error("Error in gettingAnswer:", err);
-//       res.status(500).json({ msg: "Server error" });
-//     }
-//   }

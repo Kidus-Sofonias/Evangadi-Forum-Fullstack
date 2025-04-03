@@ -1,12 +1,13 @@
 import React, { useContext } from "react";
 import logo from "../../Images/evangadi-logo-header.png";
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { userProvider } from "../../Context/UserProvider";
 
 function Header() {
   const [user, setUser] = useContext(userProvider);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const logOut = () => {
     localStorage.removeItem("token");
@@ -24,12 +25,12 @@ function Header() {
 
   return (
     <Navbar expand="lg" bg="light" variant="light" fixed="top">
-      <Container>
+      <Container className="d-flex">
         <Navbar.Brand as={Link} to="/">
           <img
             src={logo}
             alt="Logo"
-            height="40"
+            width="70%"
             className="d-inline-block align-top"
           />
         </Navbar.Brand>
@@ -47,9 +48,11 @@ function Header() {
           </Nav>
 
           <div className="d-flex">
-            <Button variant="success" onClick={handleButtonClick}>
-              {user?.user_name ? "Log Out" : "Sign In"}
-            </Button>
+            {!["/signin", "/UserAccessPage"].includes(location.pathname) && (
+              <Button variant="success" onClick={handleButtonClick}>
+                {user?.user_name ? "Log Out" : "Sign In"}
+              </Button>
+            )}
           </div>
         </Navbar.Collapse>
       </Container>
