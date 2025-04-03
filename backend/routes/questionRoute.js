@@ -18,7 +18,7 @@ router.post("/create-question", authMiddleware, createQuestion);
 // Use GET for retrieving all questions
 router.get("/all-questions", authMiddleware, allQuestions);
 
-router.get("/questions/search", searchQuestionsByTag);
+router.get("/search", searchQuestionsByTag);
 
 
 module.exports = router;

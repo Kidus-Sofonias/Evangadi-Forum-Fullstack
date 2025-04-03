@@ -78,7 +78,7 @@ function HomePage() {
       try {
         // Fetch paginated questions
         const response = await axios.get(
-          `/api/questions/all-questions?page=${currentPage}&limit=${questionsPerPage}`,
+          `/api/all-questions?page=${currentPage}&limit=${questionsPerPage}`,
           {
             headers: {
               Authorization: `Bearer ${token}`, // Pass token for authentication

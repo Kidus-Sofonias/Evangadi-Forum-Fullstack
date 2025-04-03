@@ -100,7 +100,7 @@ function AskQuestion() {
     try {
       // Post new question
       await axios.post(
-        "/api/questions/create-question",
+        "/api/create-question",
         {
           tag: data.tag, // Question tag
           title: data.title, // Question title

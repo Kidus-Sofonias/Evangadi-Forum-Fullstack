@@ -39,7 +39,7 @@ function App() {
       setUser({ userName: data.user_name, user_id: data.user_id }); // Set user data
 
       // Fetch all questions
-      const res = await axios.get("/api/questions/all-questions", {
+      const res = await axios.get("/api/all-questions", {
         headers: {
           Authorization: `Bearer ${token}`, // Pass token for authentication
         },
