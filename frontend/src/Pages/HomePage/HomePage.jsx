@@ -47,20 +47,21 @@ function HomePage() {
   function handleEdit(questionId) {
     navigate(`/edit-question/${questionId}`);
   }
-  
+
   const fetchQuestionsByTag = async (tag) => {
     try {
+      // Fetch questions filtered by tag
       const response = await axios.get(
-        `/questions/search?tag=${encodeURIComponent(tag)}`,
+        `/api/questions/search?tag=${encodeURIComponent(tag)}`,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token}`, // Pass token for authentication
           },
         }
       );
       setQuestions(response.data.result); // Update questions with filtered results
     } catch (err) {
-      console.error("Error fetching questions by tag:", err);
+      console.error("Error fetching questions by tag:", err); // Log error
     }
   };
 
@@ -72,24 +73,24 @@ function HomePage() {
     fetchQuestionsByTag(searchTag);
   }
 
-
   useEffect(() => {
     async function fetchAllQuestions() {
       try {
+        // Fetch paginated questions
         const response = await axios.get(
-          `/all-questions?page=${currentPage}&limit=${questionsPerPage}`,
+          `/api/questions/all-questions?page=${currentPage}&limit=${questionsPerPage}`,
           {
             headers: {
-              Authorization: `Bearer ${token}`,
+              Authorization: `Bearer ${token}`, // Pass token for authentication
             },
           }
         );
-        setQuestions(response.data.result);
-        setTotalQuestions(response.data.total); // Update total questions
-        setLoading(false);
+        setQuestions(response.data.result); // Set questions data
+        setTotalQuestions(response.data.total); // Update total questions count
+        setLoading(false); // Stop loading spinner
       } catch (error) {
-        console.error("Error fetching questions:", error);
-        setLoading(false);
+        console.error("Error fetching questions:", error); // Log error
+        setLoading(false); // Stop loading spinner
       }
     }
     fetchAllQuestions();

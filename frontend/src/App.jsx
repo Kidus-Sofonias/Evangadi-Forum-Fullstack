@@ -29,24 +29,25 @@ function App() {
 
   async function checkUser() {
     try {
-      const { data } = await axios.get("/api/api/users/check", {
+      // Check user authentication
+      const { data } = await axios.get("/api/users/check", {
         headers: {
-          Authorization: "Bearer " + token,
+          Authorization: "Bearer " + token, // Pass token for authentication
         },
       });
 
-      setUser({ userName: data.user_name, user_id: data.user_id });
+      setUser({ userName: data.user_name, user_id: data.user_id }); // Set user data
 
-      // get all questions
-      const res = await axios.get("/all-questions", {
+      // Fetch all questions
+      const res = await axios.get("/api/questions/all-questions", {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`, // Pass token for authentication
         },
       });
-      setQuestions(res.data.data);
+      setQuestions(res.data.data); // Set questions data
     } catch (error) {
-      console.error("Error checking user:", error); // Improved error logging
-      navigate("/");
+      console.error("Error checking user:", error); // Log error
+      navigate("/"); // Redirect to landing page on error
     }
   }
 

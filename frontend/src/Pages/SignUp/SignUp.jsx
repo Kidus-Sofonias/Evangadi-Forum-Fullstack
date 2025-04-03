@@ -21,18 +21,19 @@ function SignUp({ toggleForm }) {
     reset();
 
     try {
+      // Register new user
       await axios.post("/api/users/register", {
-        user_name: data.user_name,
-        first_name: data.first_name,
-        last_name: data.last_name,
-        password: data.password,
-        email: data.email,
+        user_name: data.user_name, // Username
+        first_name: data.first_name, // First name
+        last_name: data.last_name, // Last name
+        password: data.password, // Password
+        email: data.email, // Email
       });
 
-      toggleForm();
+      toggleForm(); // Switch to sign-in form
     } catch (error) {
-      console.log(error);
-      setError(error.response.data.msg);
+      console.error("Error registering user:", error); // Log error
+      setError(error.response.data.msg); // Display error message
     }
   }
 

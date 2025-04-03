@@ -34,7 +34,8 @@ function InstructionList() {
 
 function AskForm({ onSubmit, register, trigger, errors }) {
   return (
-    <form onSubmit={onSubmit} className="question-form">``
+    <form onSubmit={onSubmit} className="question-form">
+      ``
       <textarea
         placeholder="Tag"
         className={`input-box ${errors.tag ? "invalid" : ""}`}
@@ -48,7 +49,6 @@ function AskForm({ onSubmit, register, trigger, errors }) {
       {errors.tag && (
         <small className="text-danger">{errors.tag.message}</small>
       )}
-
       <textarea
         placeholder="Question title ..."
         className={`input-box ${errors.title ? "invalid" : ""}`}
@@ -62,7 +62,6 @@ function AskForm({ onSubmit, register, trigger, errors }) {
       {errors.title && (
         <small className="text-danger">{errors.title.message}</small>
       )}
-
       <textarea
         placeholder="Question detail ..."
         className={`input-box ${errors.question ? "invalid" : ""}`}
@@ -76,7 +75,6 @@ function AskForm({ onSubmit, register, trigger, errors }) {
       {errors.question && (
         <small className="text-danger">{errors.question.message}</small>
       )}
-
       <button type="submit" className="post-button">
         Post Question
       </button>
@@ -98,27 +96,28 @@ function AskQuestion() {
   const [successful, setSuccessful] = useState(false);
 
   async function handlePost(data) {
-    const question_id = uuidv4();
+    const question_id = uuidv4(); // Generate unique question ID
     try {
+      // Post new question
       await axios.post(
-        "/create-question",
+        "/api/questions/create-question",
         {
-          tag: data.tag,
-          title: data.title,
-          question_description: data.question_description,
-          question_id,
-          user_id: user.user_id,
+          tag: data.tag, // Question tag
+          title: data.title, // Question title
+          question_description: data.question_description, // Question description
+          question_id, // Unique question ID
+          user_id: user.user_id, // User ID
         },
         {
           headers: {
-            Authorization: "Bearer " + token,
+            Authorization: "Bearer " + token, // Pass token for authentication
           },
         }
       );
-      setSuccessful(true);
-      reset();
+      setSuccessful(true); // Mark as successful
+      reset(); // Reset form fields
     } catch (error) {
-      console.error("Error posting question:", error.response || error);
+      console.error("Error posting question:", error.response || error); // Log error
     }
   }
 

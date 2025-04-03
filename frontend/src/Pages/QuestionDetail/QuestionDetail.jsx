@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from "react";
 import "./QuestionDetail.css";
-import { useParams } from 'react-router-dom';
-import { QuestionContext } from '../../Context/QuestionContext';
+import { useParams } from "react-router-dom";
+import { QuestionContext } from "../../Context/QuestionContext";
 import axios from "../../Components/axios";
-import { userProvider } from '../../Context/UserProvider';
+import { userProvider } from "../../Context/UserProvider";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 function QuestionDetail() {
   const {
@@ -22,22 +22,19 @@ function QuestionDetail() {
   const { questions } = useContext(QuestionContext);
   const { question_id } = useParams();
   const [dbAnswer, setdbAnswer] = useState([]);
-  
+
   useEffect(() => {
     async function getAns() {
       try {
-        const ans = await axios.get(
-          `/answers/all/${question_id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        console.log(ans.data)
-        setdbAnswer(ans.data.result);
+        // Fetch answers for the question
+        const ans = await axios.get(`/api/answers/all/${question_id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`, // Pass token for authentication
+          },
+        });
+        setdbAnswer(ans.data.result); // Set answers data
       } catch (error) {
-        console.log(error);
+        console.error("Error fetching answers:", error); // Log error
       }
     }
 
@@ -52,44 +49,42 @@ function QuestionDetail() {
 
   async function handleClick(data) {
     try {
+      // Post a new answer
       await axios.post(
-        "/answers/create",  
+        "/api/answers/create",
         {
-          answer: data.answer,
-          question_id: question_id,
-          user_id: user.user_id,
+          answer: data.answer, // Answer text
+          question_id: question_id, // Question ID
+          user_id: user.user_id, // User ID
         },
         {
           headers: {
-            Authorization: "Bearer " + token,
+            Authorization: "Bearer " + token, // Pass token for authentication
           },
         }
       );
 
-      const ans = await axios.get(
-        `/answers/all/${question_id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      console.log(ans.data) 
-
-      // Update the dbAnswer state with the fetched answers
-      setdbAnswer(ans.data.result);
-      setValue("answer", ""); // Clear the textarea after posting
+      // Fetch updated answers
+      const ans = await axios.get(`/api/answers/all/${question_id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`, // Pass token for authentication
+        },
+      });
+      setdbAnswer(ans.data.result); // Update answers data
+      setValue("answer", ""); // Clear the textarea
     } catch (error) {
-      console.log(error);
+      console.error("Error posting answer:", error); // Log error
     }
   }
-  console.log(selectedQuestion) 
+  console.log(selectedQuestion);
   return (
     <div className="whole-container">
       <div className="card mb-4">
         <div className="card-body">
           <h4 className="card-title">Question</h4>
-          <h5 className="card-subtitle mb-2 text-muted">{selectedQuestion?.title}</h5>
+          <h5 className="card-subtitle mb-2 text-muted">
+            {selectedQuestion?.title}
+          </h5>
           <p className="card-text">{selectedQuestion?.description}</p>
         </div>
       </div>
@@ -104,7 +99,10 @@ function QuestionDetail() {
         <div className="card mb-3 info_question" key={index}>
           <div className="card-body row">
             <div className="col-md-4 d-flex flex-column align-items-center">
-            <i className="fas fa-user-circle fa-3x user mb-2" style={{ color: "#516cf0 " }} />
+              <i
+                className="fas fa-user-circle fa-3x user mb-2"
+                style={{ color: "#516cf0 " }}
+              />
 
               <p className="username">{answerData.user_name}</p>
             </div>
@@ -118,16 +116,18 @@ function QuestionDetail() {
       <div className="card answer text-center mb-5">
         <div className="card-body">
           <h2 className="pt-3">Answer The Above Question.</h2>
-          <Link to="/home" style={{textDecoration: "none"}}>
-                <small style={{ color: '#ff6b8f ', fontSize: '20px',  }}>
-                  Go to Question Page
-                </small>
-                </Link>
+          <Link to="/home" style={{ textDecoration: "none" }}>
+            <small style={{ color: "#ff6b8f ", fontSize: "20px" }}>
+              Go to Question Page
+            </small>
+          </Link>
 
           <form onSubmit={handleSubmit(handleClick)}>
             <div className="form-group">
               <textarea
-                className={`form-control w-75 mx-auto ${errors.answer ? "is-invalid" : ""}`}
+                className={`form-control w-75 mx-auto ${
+                  errors.answer ? "is-invalid" : ""
+                }`}
                 rows="6"
                 placeholder="Your answer..."
                 {...register("answer", {
@@ -142,16 +142,14 @@ function QuestionDetail() {
                 }}
               />
               {errors.answer && (
-                <div className="invalid-feedback">
-                  {errors.answer.message}
-                </div>
+                <div className="invalid-feedback">{errors.answer.message}</div>
               )}
-            <button
-              type="submit"
-              className="btn btn-success mt-3 post-button"
-            >
-              Post Your Answer
-            </button>
+              <button
+                type="submit"
+                className="btn btn-success mt-3 post-button"
+              >
+                Post Your Answer
+              </button>
             </div>
           </form>
         </div>

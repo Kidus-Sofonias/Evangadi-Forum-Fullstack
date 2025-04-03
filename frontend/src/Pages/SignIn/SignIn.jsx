@@ -25,30 +25,25 @@ function SignIn({ toggleForm }) {
 
   async function logIn(data) {
     try {
+      // Log in user
       const response = await axios.post("/api/users/login", {
-        password: data.password,
-        email: data.email,
+        password: data.password, // Password
+        email: data.email, // Email
       });
 
-      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("token", response.data.token); // Save token
 
       setUser({
-        user_name: response.data.user_name,
-        user_id: response.data.user_id,
+        user_name: response.data.user_name, // Set username
+        user_id: response.data.user_id, // Set user ID
       });
 
-      console.log(response);
-
-      navigate("/home", { replace: true }); // Use replace: true to prevent going back to SignIn
+      navigate("/home", { replace: true }); // Redirect to home page
     } catch (error) {
       if (error.response && error.response.status === 400) {
-        // Handle the "invalid credential" error here
-        alert("Invalid credentials. Please check your email and password.");
-
-        // You can set this error message to display in your UI or perform any other actions
+        alert("Invalid credentials. Please check your email and password."); // Show error alert
       } else {
-        console.log("Something went wrong:", error.message);
-        // Handle other error scenarios if needed
+        console.error("Something went wrong:", error.message); // Log error
       }
     }
   }
