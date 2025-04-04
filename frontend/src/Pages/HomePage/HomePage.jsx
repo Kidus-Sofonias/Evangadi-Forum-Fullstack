@@ -52,7 +52,7 @@ function HomePage() {
     try {
       // Fetch questions filtered by tag
       const response = await axios.get(
-        `/api/questions/search?tag=${encodeURIComponent(tag)}`,
+        `/api/search?tag=${encodeURIComponent(tag)}`,
         {
           headers: {
             Authorization: `Bearer ${token}`, // Pass token for authentication
@@ -141,7 +141,6 @@ function HomePage() {
                 }
                 question_id={question.question_id}
                 tag={question.tag}
-                is_answered={question.is_answered} // Pass is_answered property
               />
             </div>
           ))
