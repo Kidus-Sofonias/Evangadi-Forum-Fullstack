@@ -5,6 +5,7 @@ import axios from "../../Components/axios";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { CircularProgress } from "@mui/material"; // Import CircularProgress
 
 function SignIn({ toggleForm }) {
   const {
@@ -18,12 +19,14 @@ function SignIn({ toggleForm }) {
   const navigate = useNavigate();
   const [user, setUser] = useContext(userProvider);
   const [passwordVisible, setPasswordVisible] = useState(true);
+  const [loading, setLoading] = useState(false); // Add loading state
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
 
   async function logIn(data) {
+    setLoading(true); // Start loading
     try {
       // Log in user
       const response = await axios.post("/api/users/login", {
@@ -45,7 +48,17 @@ function SignIn({ toggleForm }) {
       } else {
         console.error("Something went wrong:", error.message); // Log error
       }
+    } finally {
+      setLoading(false); // Stop loading
     }
+  }
+
+  if (loading) {
+    return (
+      <div className="spinner-container">
+        <CircularProgress /> {/* Show spinner while loading */}
+      </div>
+    );
   }
 
   return (

@@ -124,3 +124,17 @@
   font-weight: bold;
   color: #333;
 }
+
+/* Answered/Unanswered Status */
+.answered-status {
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.answered {
+  color: green;
+}
+
+.unanswered {
+  color: red;
+}

@@ -141,6 +141,7 @@ function HomePage() {
                 }
                 question_id={question.question_id}
                 tag={question.tag}
+                is_answered={question.is_answered} // Pass is_answered property
               />
             </div>
           ))
