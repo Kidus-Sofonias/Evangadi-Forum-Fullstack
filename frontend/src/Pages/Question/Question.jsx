@@ -1,10 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Question.css";
 import { useNavigate } from "react-router-dom";
 
-function Question({ title, user_name, question_id, is_answered }) {
+function Question({ title, user_name, question_id }) {
   const navigate = useNavigate();
-  // console.log(question_id)
+  const [isAnswered, setIsAnswered] = useState(false);
+
+  useEffect(() => {
+    // Fetch the is_answered status from the backend
+    async function fetchIsAnswered() {
+      try {
+        const response = await fetch(
+          `/api/questions/${question_id}/is_answered`
+        );
+        const data = await response.json();
+        setIsAnswered(data.is_answered);
+      } catch (error) {
+        console.error("Error fetching is_answered status:", error);
+      }
+    }
+    fetchIsAnswered();
+  }, [question_id]);
 
   function handleClick() {
     navigate(`/questions/${question_id}`);
@@ -23,10 +39,10 @@ function Question({ title, user_name, question_id, is_answered }) {
         <p className=" ">{title}</p>
         <p
           className={`answered-status ${
-            is_answered ? "answered" : "unanswered"
+            isAnswered ? "answered" : "unanswered"
           }`}
         >
-          {is_answered ? "Answered" : "Unanswered"}
+          {isAnswered ? "Answered" : "Unanswered"}
         </p>
       </div>
       <div className=" col-md text-md-end   my-md-auto">

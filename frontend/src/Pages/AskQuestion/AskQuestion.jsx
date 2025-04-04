@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import axios from "../../Components/axios";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { CircularProgress } from "@mui/material"; // Import CircularProgress
 import "./AskQuestion.css";
 
 function InstructionList() {
@@ -35,7 +36,6 @@ function InstructionList() {
 function AskForm({ onSubmit, register, trigger, errors }) {
   return (
     <form onSubmit={onSubmit} className="question-form">
-      ``
       <textarea
         placeholder="Tag"
         className={`input-box ${errors.tag ? "invalid" : ""}`}
@@ -93,9 +93,11 @@ function AskQuestion() {
 
   const [user] = useContext(userProvider);
   const token = localStorage.getItem("token");
+  const [loading, setLoading] = useState(false); // Add loading state
   const [successful, setSuccessful] = useState(false);
 
   async function handlePost(data) {
+    setLoading(true); // Start loading
     const question_id = uuidv4(); // Generate unique question ID
     try {
       // Post new question
@@ -118,7 +120,17 @@ function AskQuestion() {
       reset(); // Reset form fields
     } catch (error) {
       console.error("Error posting question:", error.response || error); // Log error
+    } finally {
+      setLoading(false); // Stop loading
     }
+  }
+
+  if (loading) {
+    return (
+      <div className="spinner-container">
+        <CircularProgress /> {/* Show spinner while loading */}
+      </div>
+    );
   }
 
   return (

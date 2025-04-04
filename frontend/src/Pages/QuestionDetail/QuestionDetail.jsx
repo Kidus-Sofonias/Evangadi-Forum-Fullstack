@@ -6,6 +6,7 @@ import axios from "../../Components/axios";
 import { userProvider } from "../../Context/UserProvider";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { CircularProgress } from "@mui/material"; // Import CircularProgress
 
 function QuestionDetail() {
   const {
@@ -22,6 +23,7 @@ function QuestionDetail() {
   const { questions } = useContext(QuestionContext);
   const { question_id } = useParams();
   const [dbAnswer, setdbAnswer] = useState([]);
+  const [loading, setLoading] = useState(false); // Add loading state
 
   useEffect(() => {
     async function getAns() {
@@ -48,6 +50,7 @@ function QuestionDetail() {
   );
 
   async function handleClick(data) {
+    setLoading(true); // Start loading
     try {
       // Post a new answer
       await axios.post(
@@ -74,9 +77,19 @@ function QuestionDetail() {
       setValue("answer", ""); // Clear the textarea
     } catch (error) {
       console.error("Error posting answer:", error); // Log error
+    } finally {
+      setLoading(false); // Stop loading
     }
   }
-  console.log(selectedQuestion);
+
+  if (loading) {
+    return (
+      <div className="spinner-container">
+        <CircularProgress /> {/* Show spinner while loading */}
+      </div>
+    );
+  }
+
   return (
     <div className="whole-container">
       <div className="card mb-4">
