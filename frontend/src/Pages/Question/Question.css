@@ -1,13 +1,12 @@
-.vertical-center-text {
-    display: flex;
-    align-items: center;
-
+.status {
+  font-size: 0.9rem;
+  font-weight: bold;
 }
 
-.top_question {
-    height: 150px;
+.answered {
+  color: green;
 }
 
-.user {
-    margin-bottom: 5px;
+.unanswered {
+  color: red;
 }

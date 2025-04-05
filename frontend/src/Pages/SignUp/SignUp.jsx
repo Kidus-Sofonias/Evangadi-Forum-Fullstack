@@ -3,12 +3,10 @@ import "./SignUp.css";
 import axios from "../../Components/axios";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-import { CircularProgress } from "@mui/material"; // Import CircularProgress
 
 function SignUp({ toggleForm }) {
   const [errorResponse, setError] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(true);
-  const [loading, setLoading] = useState(false); // Add loading state
 
   const {
     register,
@@ -19,7 +17,6 @@ function SignUp({ toggleForm }) {
   } = useForm();
 
   async function onSubmit(data) {
-    setLoading(true); // Start loading
     console.log(data);
     reset();
 
@@ -37,22 +34,12 @@ function SignUp({ toggleForm }) {
     } catch (error) {
       console.error("Error registering user:", error); // Log error
       setError(error.response.data.msg); // Display error message
-    } finally {
-      setLoading(false); // Stop loading
     }
   }
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
-
-  if (loading) {
-    return (
-      <div className="spinner-container">
-        <CircularProgress /> {/* Show spinner while loading */}
-      </div>
-    );
-  }
 
   return (
     <div className="login__container container col-sm-12 col-md">

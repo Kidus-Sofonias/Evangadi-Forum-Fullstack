@@ -57,25 +57,8 @@ async function GetAnswersByQuestionId(req, res) {
   }
 }
 
-// Add a new function to check if a question is answered
-async function isQuestionAnswered(req, res) {
-  const { question_id } = req.params;
-  try {
-    const query =
-      "SELECT COUNT(*) AS answer_count FROM answerTable WHERE question_id = ?";
-    const [result] = await dbConnection.query(query, [question_id]);
-    const is_answered = result[0].answer_count > 0;
-    return res.status(StatusCodes.OK).json({ is_answered });
-  } catch (error) {
-    console.error("Error checking if question is answered:", error);
-    return res
-      .status(StatusCodes.INTERNAL_SERVER_ERROR)
-      .json({ msg: "Something went wrong" });
-  }
-}
 
 module.exports = {
   createAnswer,
   GetAnswersByQuestionId,
-  isQuestionAnswered, // Export the new function
 };
