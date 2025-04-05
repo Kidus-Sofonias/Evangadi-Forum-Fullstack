@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "../../Components/axios";
 import { QuestionContext } from "../../Context/QuestionContext";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { CircularProgress } from "@mui/material"; // Import CircularProgress
 
 function HomePage() {
   const navigate = useNavigate();
@@ -129,7 +130,9 @@ function HomePage() {
       </div>
       <div className="load">
         {loading ? (
-          <div className="loading">Loading...</div>
+          <div className="spinner-container">
+            <CircularProgress /> {/* Show spinner while loading */}
+          </div>
         ) : (
           questions?.map((question) => (
             <div className="question-item" key={question.question_id}>
